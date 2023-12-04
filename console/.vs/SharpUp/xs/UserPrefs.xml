@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{7271A2CF-2978-4DE5-8079-747198DE0CE1}|Default">
+  <MonoDevelop.Ide.ItemProperties.SharpUp PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SharpUp/Program.cs">
+    <Files>
+      <File FileName="SharpUp/Program.cs" Line="10" Column="13" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
