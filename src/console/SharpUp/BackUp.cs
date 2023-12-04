@@ -6,14 +6,21 @@ namespace SharpUp
 {
     public class BackUp
     {
-        public BackUp(string WhatToBkUp, string WhereToBkUp, List<string> ToIgnore)
+        private static string WhatToBkUp;
+        private static string WhereToBkUp;
+        private static List<string> ToIgnore;
+
+        public BackUp(string whatToBkUp, string whereToBkUp, List<string> toIgnore)
         {
-            
+            WhatToBkUp = whatToBkUp;
+            WhereToBkUp = whereToBkUp;
+            ToIgnore = toIgnore;
         }
 
-        public BackUp(string WhatToBkUp, string WhereToBkUp)
+        public BackUp(string whatToBkUp, string whereToBkUp)
         {
-            
+            WhatToBkUp = whatToBkUp;
+            WhereToBkUp = whereToBkUp;
         }
     }
 }

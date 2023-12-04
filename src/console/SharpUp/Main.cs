@@ -56,6 +56,27 @@ namespace SharpUp
                             {
                                 WhatToBkUp = args[0];
                                 WhereToBkUp = args[1];
+
+                                try
+                                {
+                                    if(args[2] == "-i")
+                                    {
+                                        for (int i = 1; i < args.Length; i++)
+                                        {
+                                            ToIgnore.Add(args[i]);
+                                        }
+
+                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
+                                    }
+                                    else
+                                    {
+                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                    }
+                                }
+                                catch(Exception e)
+                                {
+                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                }
                             }
                             else
                             {
