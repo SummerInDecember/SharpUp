@@ -18,6 +18,49 @@ namespace SharpUp
 
         }
 
+        // added because the user might want to change the folders/files to ignore
+        static void ChangeIgnore(ref List<string> toIgnore)
+        {
+            if(toIgnore.Count == 0)
+            {
+                while (true)
+                {
+                    
+                    Console.WriteLine("You do not have anything to ignore, Do you want to change that?(y/n) ");
+                    char wantsToChange;
+                    bool worked = Char.TryParse(Console.ReadLine().ToLower(), out wantsToChange);
+
+                    if (worked == true && wantsToChange == 'y')
+                    {
+                        break;
+                    }
+                    else if (worked == true && wantsToChange == 'n')
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You did not introduce a valid value");
+                    }
+
+                }
+
+                Console.WriteLine("Insert the files/folders to ignore. (Insert STOP to stop)");
+
+                while(true)
+                {
+                    string ignore = Console.ReadLine();
+                    if (ignore.ToUpper() != "STOP")
+                    {
+                        toIgnore.Add(ignore);
+                    }
+                    else
+                        break;
+                }
+
+            }
+        }
+
         private static void GetInptConsole()
         {
             while(true)
@@ -61,7 +104,7 @@ namespace SharpUp
                                 {
                                     if(args[2] == "-i")
                                     {
-                                        for (int i = 1; i < args.Length; i++)
+                                        for (int i = 3; i < args.Length; i++)
                                         {
                                             ToIgnore.Add(args[i]);
                                         }
@@ -70,12 +113,29 @@ namespace SharpUp
                                     }
                                     else
                                     {
-                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                        ChangeIgnore(ref ToIgnore);
+                                        if (ToIgnore.Count != 0)
+                                        {
+                                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
+                                        }
+                                        else
+                                        {
+                                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                        }
+
                                     }
                                 }
                                 catch(Exception e)
                                 {
-                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                    ChangeIgnore(ref ToIgnore);
+                                    if (ToIgnore.Count != 0)
+                                    {
+                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
+                                    }
+                                    else
+                                    {
+                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                                    }
                                 }
                             }
                             else
