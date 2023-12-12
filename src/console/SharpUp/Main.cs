@@ -6,27 +6,74 @@ namespace SharpUp
 {
     class MainConsoleClass
     {
-        private static List<string> ToIgnore = new List<string>(); //list that contains the files or paths to ignore
+        private static List<string> FToIgnore = new List<string>(); //list that contains the files to ignore
+        private static List<string> DToIgnore = new List<string>(); //list that contains the paths to ignore
         private static string WhatToBkUp;
         private static string WhereToBkUp;
 
         public static void Options()
         {
-            Console.WriteLine("Example sharpup [path or file to backup] [path where to back up] -i [files or directories to ignore]");
+            Console.WriteLine("Example sharpup [directory to backup] [path where to back up] -i [files or directories to ignore]");
             Console.WriteLine("-h        Show this menu");
-            Console.WriteLine("-i        Select files or directories to ignore");
-
+            Console.WriteLine("====CONSOLE-MODE=======");
+            Console.WriteLine("fi [ARGS]                      Files to igonore");
+            Console.WriteLine("di [ARGS]                      Directories to ignore");
+            Console.WriteLine("backup                         Start the back up");
+            Console.WriteLine("what [File/path to backup]     Directory to backup");
+            Console.WriteLine("where [BackUp destination]     Select backup destination");
+            Console.WriteLine("exit           Exit the app");
         }
 
         // added because the user might want to change the folders/files to ignore
-        static void ChangeIgnore(ref List<string> toIgnore)
+        static void ChangeIgnore(ref List<string> fToIgnore, ref List<string> dToIgnore)
         {
-            if(toIgnore.Count == 0)
+            bool shouldIbreak = false;
+            if(fToIgnore.Count == 0)
             {
                 while (true)
                 {
                     
-                    Console.WriteLine("You do not have anything to ignore, Do you want to change that?(y/n) ");
+                    Console.WriteLine("You do not have any file to ignore, Do you want to change that?(y/n) ");
+                    char wantsToChange;
+                    bool worked = Char.TryParse(Console.ReadLine().ToLower(), out wantsToChange);
+
+                    if (worked == true && wantsToChange == 'y')
+                    {
+                        break;
+                    }
+                    else if (worked == true && wantsToChange == 'n')
+                    {
+
+                        shouldIbreak = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You did not introduce a valid value");
+                    }
+
+                }
+
+                Console.WriteLine("Insert the files to ignore. (Insert STOP to stop)");
+
+                while(shouldIbreak == false)
+                {
+                    string ignore = Console.ReadLine();
+                    if (ignore.ToUpper() != "STOP")
+                    {
+                        fToIgnore.Add(ignore);
+                    }
+                    else
+                        break;
+                }
+
+            }
+            else if(dToIgnore.Count == 0)
+            {
+                while (true)
+                {
+
+                    Console.WriteLine("You do not have any path to ignore, Do you want to change that?(y/n) ");
                     char wantsToChange;
                     bool worked = Char.TryParse(Console.ReadLine().ToLower(), out wantsToChange);
 
@@ -45,19 +92,18 @@ namespace SharpUp
 
                 }
 
-                Console.WriteLine("Insert the files/folders to ignore. (Insert STOP to stop)");
+                Console.WriteLine("Insert the folders to ignore. (Insert STOP to stop)");
 
-                while(true)
+                while (true)
                 {
                     string ignore = Console.ReadLine();
                     if (ignore.ToUpper() != "STOP")
                     {
-                        toIgnore.Add(ignore);
+                        dToIgnore.Add(ignore);
                     }
                     else
                         break;
                 }
-
             }
         }
 
@@ -67,6 +113,57 @@ namespace SharpUp
             {
                 Console.Write(">> ");
                 string option = Console.ReadLine();
+
+                switch(option)
+                {
+                    case "exit":
+                        Console.WriteLine("Exiting...");
+                        Environment.Exit(0);
+                        break;
+                    case "fi":
+                        string[] fiIgArr = option.Split(' ');
+                        for (byte i = 0; i < fiIgArr.Length; i++)
+                        {
+                            if (i == 0)
+                                continue;
+                            else
+                                FToIgnore.Add(fiIgArr[i]);
+                        }
+                        break;
+                    case "di":
+                        string[] diIgArr = option.Split(' ');
+                        for (byte i = 0; i < diIgArr.Length; i++)
+                        {
+                            if (i == 0)
+                                continue;
+                            else
+                                DToIgnore.Add(diIgArr[i]);
+                        }
+                        break;
+                    case "backup":
+                        if ((WhatToBkUp != string.Empty && WhereToBkUp != string.Empty))
+                        {
+                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, FToIgnore, DToIgnore);
+                        }
+                        break;
+                    case "what":
+                        string[] what = option.Split(' ');
+                        if (Directory.Exists(what[1]))
+                            WhatToBkUp = what[1];
+                        else
+                            Console.WriteLine("Invalid path/file");
+                        break;
+                    case "where":
+                        string[] where = option.Split(' ');
+                        if (Directory.Exists(where[1]))
+                            WhatToBkUp = where[1];
+                        else
+                            Console.WriteLine("Invalid path");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option");
+                        break;
+                }
             }
         }
 
@@ -83,60 +180,25 @@ namespace SharpUp
                     case "-h":
                         Options();
                         break;
-                    case "-i":
-                        if(args.Length >= 2)
-                        {
-                            for (int i = 1; i < args.Length; i++)
-                            {
-                                ToIgnore.Add(args[i]);
-                            }
-                        }
-                        break;
                     default:
                         try
                         {
-                            if ((File.Exists(args[0]) || Directory.Exists(args[0])) && (Directory.Exists(args[1])))
+                            if ((Directory.Exists(args[0])) && (Directory.Exists(args[1])))
                             {
                                 WhatToBkUp = args[0];
                                 WhereToBkUp = args[1];
 
-                                try
+                                    
+                                ChangeIgnore(ref FToIgnore, ref DToIgnore);
+                                if (FToIgnore.Count != 0)
                                 {
-                                    if(args[2] == "-i")
-                                    {
-                                        for (int i = 3; i < args.Length; i++)
-                                        {
-                                            ToIgnore.Add(args[i]);
-                                        }
-
-                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
-                                    }
-                                    else
-                                    {
-                                        ChangeIgnore(ref ToIgnore);
-                                        if (ToIgnore.Count != 0)
-                                        {
-                                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
-                                        }
-                                        else
-                                        {
-                                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
-                                        }
-
-                                    }
+                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, FToIgnore);
                                 }
-                                catch(Exception e)
+                                else
                                 {
-                                    ChangeIgnore(ref ToIgnore);
-                                    if (ToIgnore.Count != 0)
-                                    {
-                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, ToIgnore);
-                                    }
-                                    else
-                                    {
-                                        BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
-                                    }
+                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
                                 }
+
                             }
                             else
                             {
