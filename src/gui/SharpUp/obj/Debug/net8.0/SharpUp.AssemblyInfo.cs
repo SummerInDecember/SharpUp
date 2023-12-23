@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SharpUp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8357d753782290bfbc107222ebeffcd930fbc0e1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b036b44c398f0c92bfdd8e0d52868ceb5a770adb")]
 [assembly: System.Reflection.AssemblyProductAttribute("SharpUp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SharpUp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

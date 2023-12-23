@@ -6,6 +6,7 @@
         x:Class="SharpUp.MainWindow"
         Title="SharpUp">
         <StackPanel>
+
                 <Border Margin="5" 
                 CornerRadius="10"
                 Background="LightBlue">
@@ -15,11 +16,24 @@
                         Text="SharpUp: The smart backup tool">
                 </TextBlock>
                 </Border>
-                <Grid ShowGridLines="True" Margin="5"
-                        ColumnDefinitions="120, 100" 
-                        RowDefinitions="Auto, Auto, Auto">
+
+                <Grid ShowGridLines="False" Margin="5"
+                        ColumnDefinitions="185, 150, 230" 
+                        RowDefinitions="Auto, Auto, Auto, Auto">
                         <Label Grid.Row="0" Grid.Column="0">Folder to backup</Label>
-                        <TextBox Grid.Row="0" Grid.Column="1"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="WhatBkUp"/>
+                        <Label Grid.Row="1" Grid.Column="0">Place to back up to backup</Label>
+                        <TextBox Grid.Row="1"  Grid.Column="1" Name="WhereBkUp"/>
+                        <Label Grid.Row="2" Grid.Column="0" >Files to ignore</Label>
+                        <TextBox Grid.Row="2"  Grid.Column="1" Name="FToIgString"/>
+                        <Label Grid.Row="2" Grid.Column="2">(Enter them separated by spaces)</Label>
+                        <Label Grid.Row="3" Grid.Column="0" >Folders to ignore</Label>
+                        <TextBox Grid.Row="3"  Grid.Column="1" Name="DToIgString"/>
+                        <Label Grid.Row="3" Grid.Column="2">(Enter them separated by spaces)</Label>
                 </Grid>
+
+                <Button Click="BackUp">BackUp Now</Button>
+
+                <TextBlock FontSize="18" HorizontalAlignment="Center" Name="WarnText"></TextBlock>
         </StackPanel>
 </Window>
