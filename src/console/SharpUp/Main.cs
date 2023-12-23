@@ -13,8 +13,9 @@ namespace SharpUp
 
         public static void Options()
         {
-            Console.WriteLine("Example sharpup [directory to backup] [path where to back up] -i [files or directories to ignore]");
-            Console.WriteLine("-h        Show this menu");
+            Console.WriteLine("Example: sharpup [directory to backup] [path where to back up] --i [files or directories to ignore]");
+            Console.WriteLine("--i        Chose files or directories to ignore");
+            Console.WriteLine("--h        Show this menu");
             Console.WriteLine("====CONSOLE-MODE=======");
             Console.WriteLine("fi [ARGS]                      Files to igonore");
             Console.WriteLine("di [ARGS]                      Directories to ignore");
@@ -173,7 +174,7 @@ namespace SharpUp
             {
                 GetInptConsole();
             }
-            else if(args.Length >= 1)
+            else if(args.Length >= 1 && Directory.Exists(args[0]) && Directory.Exists(args[1]))
             {
                 switch(args[0])
                 {
@@ -181,39 +182,20 @@ namespace SharpUp
                         Options();
                         break;
                     default:
-                        try
-                        {
-                            if ((Directory.Exists(args[0])) && (Directory.Exists(args[1])))
-                            {
-                                WhatToBkUp = args[0];
-                                WhereToBkUp = args[1];
+                       WhatToBkUp = args[0];
+                       WhereToBkUp = args[1];
 
-                                    
-                                ChangeIgnore(ref FToIgnore, ref DToIgnore);
-                                if (FToIgnore.Count != 0)
-                                {
-                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, FToIgnore);
-                                }
-                                else
-                                {
-                                    BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
-                                }
-
-                            }
-                            else
-                            {
-                                Console.WriteLine("Please provide arguments as showed by these option: ");
-                                Options();
-                                GetInptConsole(); 
-                            }
-                        }
-                        catch(Exception e)
+                        ChangeIgnore(ref FToIgnore, ref DToIgnore);
+                        if (FToIgnore.Count != 0)
                         {
-                            Console.WriteLine(e);
-                            Console.WriteLine("Please provide arguments as showed by these option: ");
-                            Options();
-                            GetInptConsole();
+                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp, FToIgnore);
                         }
+                        else
+                        {
+                            BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
+                        }
+
+                        
                         break;
                 }
             }

@@ -10,3 +10,9 @@
 /home/gabriel/projects/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.csproj.CoreCompileInputs.cache
 /home/gabriel/projects/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.exe
 /home/gabriel/projects/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.pdb
+/home/birb/SharpUp/src/console/SharpUp/bin/Debug/SharpUp.exe
+/home/birb/SharpUp/src/console/SharpUp/bin/Debug/SharpUp.pdb
+/home/birb/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.csproj.AssemblyReference.cache
+/home/birb/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.csproj.CoreCompileInputs.cache
+/home/birb/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.exe
+/home/birb/SharpUp/src/console/SharpUp/obj/x86/Debug/SharpUp.pdb
