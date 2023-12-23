@@ -50,7 +50,7 @@ public partial class MainWindow : Window
             }
 
             BackUp bk = new BackUp(src, dest, fToIgnore, dToIgnore);
-
+            WarnText.Text = "Backup sucessful";
         }
         else
         {
