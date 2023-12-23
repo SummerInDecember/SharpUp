@@ -195,7 +195,6 @@ namespace SharpUp
                             BackUp bk = new BackUp(WhatToBkUp, WhereToBkUp);
                         }
 
-                        
                         break;
                 }
             }

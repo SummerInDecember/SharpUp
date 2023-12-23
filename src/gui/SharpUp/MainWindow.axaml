@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SharpUp.MainWindow"
+        Title="SharpUp">
+        <StackPanel>
+                <Border Margin="5" 
+                CornerRadius="10"
+                Background="LightBlue">
+                <TextBlock Margin="5"
+                        FontSize="24" 
+                        HorizontalAlignment="Center"
+                        Text="SharpUp: The smart backup tool">
+                </TextBlock>
+                </Border>
+                <Grid ShowGridLines="True" Margin="5"
+                        ColumnDefinitions="120, 100" 
+                        RowDefinitions="Auto, Auto, Auto">
+                        <Label Grid.Row="0" Grid.Column="0">Folder to backup</Label>
+                        <TextBox Grid.Row="0" Grid.Column="1"/>
+                </Grid>
+        </StackPanel>
+</Window>

@@ -1,8 +1,8 @@
 ﻿<Properties StartupConfiguration="{7271A2CF-2978-4DE5-8079-747198DE0CE1}|Default">
   <MonoDevelop.Ide.ItemProperties.SharpUp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="SharpUp/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="SharpUp/BackUp.cs">
     <Files>
-      <File FileName="SharpUp/Main.cs" Line="201" Column="1" />
+      <File FileName="SharpUp/Main.cs" Line="197" Column="25" />
       <File FileName="SharpUp/BackUp.cs" Line="58" Column="19" />
     </Files>
     <Pads>
@@ -10,7 +10,7 @@
         <State name="__root__">
           <Node name="SharpUp" expanded="True">
             <Node name="SharpUp" expanded="True">
-              <Node name="Main.cs" selected="True" />
+              <Node name="BackUp.cs" selected="True" />
             </Node>
           </Node>
         </State>
